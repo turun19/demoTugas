@@ -44,5 +44,6 @@ public class StaffService {
         Staff staff = sf.findById(staffId).get();
         sf.deleteById(staffId);
         return staff;
+
     }
 }
