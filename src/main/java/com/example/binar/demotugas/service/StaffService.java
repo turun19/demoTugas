@@ -12,10 +12,12 @@ import java.util.Optional;
 public class StaffService {
     @Autowired
     StaffRepository sf;
+    //business logic
     public List<Staff> getAll() {
         return sf.findAll();
     }
 
+    //business logic
     public Staff createAll(Staff param) {
         Optional<Staff> staff = sf.findById(param.getStaff_id()); // untuk pengecekan lewat id
         if(staff.isPresent()){
@@ -25,6 +27,7 @@ public class StaffService {
         }
     }
 
+    //business logic
     public Staff uodateAll(Staff param) {
         Staff staff = sf.findById(param.getStaff_id()).get();
         staff.setFirst_name(param.getFirst_name());
@@ -40,6 +43,7 @@ public class StaffService {
 
     }
 
+    //business logic
     public Staff deleteColumn(int staffId) {
         Staff staff = sf.findById(staffId).get();
         sf.deleteById(staffId);
