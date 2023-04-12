@@ -32,4 +32,18 @@ public class StaffController {
         return ss.deleteColumn(staff_id);
     }
 
+    @PostMapping(value = "/staff-addList")
+    public List<Staff> MakeAll(@RequestBody List<Staff> parame){ // add data
+        return ss.MakeAll(parame);
+    }
+
+    @GetMapping(value = "/check-username/{username}")
+    public List<Staff> findByUsername(@PathVariable("username") String username){
+        return ss.findByUsername(username);
+    }
+
+    @GetMapping(value = "/check-email/{email}")
+    public List<Staff> findByEmail(@PathVariable("email") String email){
+        return ss.findByEmail(email);
+    }
 }

@@ -5,6 +5,8 @@ import com.example.binar.demotugas.repository.StaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,4 +52,28 @@ public class StaffService {
         return staff;
 
     }
+
+    public List<Staff> MakeAll(List<Staff> parame) {
+        List<Staff> list = new ArrayList<>();
+
+        for(Staff staff : parame){
+            Optional<Staff> filmExsist = sf.findById(staff.getStaff_id());
+            if(filmExsist.isPresent()){
+                throw new RuntimeException("Film Code " + staff.getStaff_id() + " Sudah Ada");
+            }
+            else {
+                list.add(sf.save(staff));
+            }
+        }
+        return sf.saveAll(list);
+    }
+
+    public List<Staff> findByUsername(String username){
+        return sf.findByUsername(username);
+    }
+
+    public List<Staff> findByEmail(String email){
+        return sf.findByEmail(email);
+    }
+
 }
